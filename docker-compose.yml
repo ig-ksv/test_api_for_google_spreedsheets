@@ -1,0 +1,14 @@
+version: "3"
+services:
+  fmp:
+    container_name: api
+    build:
+      context: google_api
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - GOOGLE_PROJECT_APIKEY=${GOOGLE_APIKEY}
+    ports:
+      - 8000:8000
+    command: uvicorn google_api.app:app --reload --workers 1 --host 0.0.0.0 --port 8000
+
